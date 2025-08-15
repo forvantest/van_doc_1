@@ -1,0 +1,7 @@
+apili:
+  - name: PRERU # WFL/CL/BH/PRERUN(STRING LLBDATE OPTIONAL DEFAULT="0" ,STRING LBDATE  OPTIONAL DEFAULT="0" ,STRING TBDATE  OPTIONAL DEFAULT="0");
+    fmtId: CL_BATCH_I
+    txType: U # I:查詢類,U:更新類
+    service:
+      # 新寫完加在這後面
+      - name: XPUTF

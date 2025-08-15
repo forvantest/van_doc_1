@@ -1,0 +1,774 @@
+buildscript {
+    dependencies {
+        classpath(
+                // https://plugins.gradle.org/plugin/org.hidetake.ssh
+                'org.hidetake:core:2.11.2'
+        )
+    }
+}
+
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+
+    id 'maven-publish'
+    id 'com.diffplug.spotless'
+}
+
+apply from: "$rootProject.projectDir/gradle/deploy/deploy.gradle"
+
+group = 'com.bot'
+version = '0.0.1-SNAPSHOT'
+
+def ioGrpcVer = '1.70.0' // CURRENT_GRPC_VERSION
+def protobufVer = '4.30.1'
+def mapStructVer = '1.5.5.Final'
+//def jasperVer = '6.20.6'
+
+def swaggerAnnVer = '2.2.10'
+def beanUtilVer = '1.9.4'
+def openfeign = '12.5'
+def jodaTime = '2.12.5'
+def commonsLang3 = '3.14.0'
+def gsonVer = '2.12.1'
+
+dependencies {
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    providedRuntime 'com.oracle.database.jdbc:ojdbc11'
+
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    // TxControl
+    implementation("com.bot:txcontrol:1.0.0") { changing = true }
+    implementation("com.bot.ncl:g2660:1.0.0") { changing = true }
+    implementation("com.bot.ncl:g2660s:1.0.0") { changing = true }
+
+    // API IN
+    implementation("com.bot.ncl:apiin:1.0.0") { changing = true }
+
+    // COMMON_NCL
+    implementation("com.bot.ncl:common_ncl:1.0.0") { changing = true }
+
+    // DBS
+    implementation("com.bot.ncl:dbs_clbaf:1.0.0") { changing = true }
+    implementation("com.bot.ncl:dbs_clcmp:1.0.0") { changing = true }
+    implementation("com.bot.ncl:dbs_cldmr:1.0.0") { changing = true }
+    implementation("com.bot.ncl:dbs_cldtl:1.0.0") { changing = true }
+    implementation("com.bot.ncl:dbs_clfee:1.0.0") { changing = true }
+    implementation("com.bot.ncl:dbs_clhold:1.0.0") { changing = true }
+    implementation("com.bot.ncl:dbs_clmc:1.0.0") { changing = true }
+    implementation("com.bot.ncl:dbs_clmr:1.0.0") { changing = true }
+    implementation("com.bot.ncl:dbs_cltmp:1.0.0") { changing = true }
+    implementation("com.bot.ncl:dbs_cltmr:1.0.0") { changing = true }
+    implementation("com.bot.ncl:dbs_cltot:1.0.0") { changing = true }
+    implementation("com.bot.ncl:dbs_nativequery:1.0.0") { changing = true }
+
+// BATCH - C1530 API
+    implementation project (":c1530_s01") // API
+    implementation project (":c1530_s02") // API
+    implementation project (":c1530_s03_01") // API
+    implementation project (":c1530_s03_02") // API
+    implementation project (":c1530_s04_01") // API
+    implementation project (":c1530_s04_02") // API
+    implementation project (":c1530_s05") // API
+    implementation project (":c1530_s06") // API
+    implementation project (":c1530_s07") // API
+    implementation project (":c1530_s08") // API
+    implementation project (":c1530_s09") // API
+    implementation project (":c1530_s10") // API
+    implementation project (":c1530_s11") // API
+    implementation project (":c1530_s12") // API
+    implementation project (":c1530_s13") // API
+    implementation project (":c1530_s14") // API
+    implementation project (":c1530_s15") // API
+    implementation project (":c1530_s16") // API
+    implementation project (":c1530_s17") // API
+    implementation project (":c1530_s18") // API
+    implementation project (":c1530_s19") // API
+    implementation project (":c1530_s20") // API
+    implementation project (":c1530_s21") // API
+    implementation project (":c1530_s22") // API
+    implementation project (":c1530_s23") // API
+    implementation project (":c1530_s24") // API
+    implementation project (":c1530_s25") // API
+    implementation project (":c1530_s26") // API
+    implementation project (":c1530_s27") // API
+    implementation project (":c1530_s28") // API
+    implementation project (":c1530_s29") // API
+    implementation project (":c1530_s30") // API
+    implementation project (":c1530_s31")// API
+    implementation project (":c1530_s32") // API
+    implementation project (":c1530_s33") // API
+    implementation project (":c1530_s34") // API
+    implementation project (":c1530_s35") // API
+    implementation project (":c1530_s36") // API
+    implementation project (":c1530_s36_02") // API
+    implementation project (":c1530_s37") // API
+    implementation project (":c1530_s38") // API
+    implementation project (":c1530_s41") // API
+    implementation project (":c1530_s42") // API
+    implementation project (":c1530_s43") // API
+    implementation project (":c1530_s43_02") // API
+    implementation project (":c1530_s44") // API
+    implementation project (":c1530_s45_01") // API
+    implementation project (":c1530_s45_02") // API
+    implementation project (":c1530_s46_01") // API
+    implementation project (":c1530_s46_02") // API
+    implementation project (":c1530_s46_03") // API
+    implementation project (":c1530_s46_04") // API
+    implementation project (":c1530_s46_05") // API
+    implementation project (":c1530_s46_06") // API
+    implementation project (":c1530_s47") // API
+    implementation project (":c1530_s48") // API
+    implementation project (":c1530_s49") // API
+    implementation project (":c1530_s50_01") // API
+    implementation project (":c1530_s50_02") // API
+    implementation project (":c1530_s50_03") // API
+    implementation project (":c1530_s51") // API
+    implementation project (":c1530_s52") // API
+    implementation project (":c1530_s53_01") // API
+    implementation project (":c1530_s53_02") // API
+    implementation project (":c1530_s53_03") // API
+    implementation project (":c1530_s53_04") // API
+    implementation project (":c1530_s54") // API
+    implementation project (":c1530_s55") // API
+    implementation project (":c1530_s56") // API
+    implementation project (":c1530_s57") // API
+    implementation project (":c1530_s58") // API
+    implementation project (":c1530_s85_01") // API
+    implementation project (":c1530_s85_05") // API
+    implementation project (":c1530_s85_10") // API
+    implementation project (":c1530_s86") // API
+    implementation project (":c1530_s87") // API
+    implementation project (":c1530_s89") // API
+    implementation project (":c1530_s90") // API
+    implementation project (":c1530_s91_01") // API
+    implementation project (":c1530_s91_02") // API
+    implementation project (":c1530_s91_03") // API
+// BATCH - C1530 Service
+    implementation project (":puth")
+    implementation project (":ex_kputh1")
+    implementation project (":ex_sortkputh")
+    implementation project (":uputh")
+    implementation project (":putf")
+    implementation project (":putfn")
+    implementation project (":uputf")
+    implementation project (":uputfn")
+    implementation project (":baf2")
+    implementation project (":baf1")
+    implementation project (":baf3")
+    implementation project (":brdtl")
+    implementation project (":totdtl")
+    implementation project (":prtf")
+    implementation project (":convtax")
+    implementation project (":convtputh")
+    implementation project (":sortallputf")
+    implementation project (":convf")
+    implementation project (":conv2")
+    implementation project (":conv302007_pbrno")
+    implementation project (":conv302007")
+    implementation project (":conv5")
+    implementation project (":conv7")
+    implementation project (":conv9")
+    implementation project (":conv11")
+    implementation project (":conv12")
+    implementation project (":conv13")
+    implementation project (":conv15")
+    implementation project (":conv16")
+    implementation project (":conv19")
+    implementation project (":conv20")
+    implementation project (":conv21")
+    implementation project (":conv23")
+    implementation project (":conv25")
+    implementation project (":conv28")
+    implementation project (":updtax")
+    implementation project (":ex_kputh2")
+    implementation project (":c060")
+    implementation project (":c063")
+    implementation project (":c064")
+    implementation project (":c065")
+    implementation project (":c067")
+    implementation project (":c066")
+    implementation project (":conv113522")
+    implementation project (":conv115463")
+    implementation project (":conv115892")
+    implementation project (":conv115902")
+    implementation project (":conv115988")
+    implementation project (":conv121444")
+    implementation project (":conv121454")
+    implementation project (":conv133288")
+    implementation project (":conv145952")
+    implementation project (":conv153894")
+    implementation project (":conv196929")
+    implementation project (":conv360019")
+    implementation project (":conv361019")
+    implementation project (":conv361689")
+    implementation project (":conv366009")
+    implementation project (":conv366309")
+    implementation project (":conv366ae9")
+    implementation project (":conv366za9")
+    implementation project (":conv366zb9")
+    implementation project (":conv36c179")
+    implementation project (":conv36f209")
+    implementation project (":conv510040")
+    implementation project (":conv530004")
+    implementation project (":c073")
+    implementation project (":c074")
+    implementation project (":c077")
+    implementation project (":cretoaims")
+    implementation project (":crec012")
+    implementation project (":mntclmrstatus")
+    implementation project (":c012")
+    implementation project (":chgf")
+    implementation project (":tapef")
+    implementation project (":list1")
+    implementation project (":list2")
+    implementation project (":deldtl")
+    implementation project (":delcmp")
+    implementation project (":htaxexdtl")
+    implementation project (":c079")
+    implementation project (":c080")
+
+
+//BATCH ANALY API
+    implementation project (":analy_s00") // API
+    implementation project (":analy_s02") // API
+    implementation project (":analy_s03") // API
+    implementation project (":analy_s04") // API
+    implementation project (":analy_s05") // API
+    implementation project (":analy_s06") // API
+    implementation project (":analy_s07") // API
+    implementation project (":analy_s08") // API
+    implementation project (":analy_s19") // API
+    implementation project (":analy_s21") // API
+    implementation project (":analy_s22") // API
+    implementation project (":analy_s23") // API
+//BATCH ANALY Service
+    implementation project (":analy_mainrtn")
+    implementation project (":stat1")
+    implementation project (":c016")
+    implementation project (":stat2")
+    implementation project (":stat3")
+    implementation project (":stat4")
+    implementation project (":stat5")
+    implementation project (":c010")
+    implementation project (":crec0121")
+    implementation project (":c0121")
+    implementation project (":clmrpwtype")
+    implementation project (":analy_emailrtn")
+
+// BATCH - BT002 API
+    implementation project (":bt002") // API
+// BATCH - BT002 Service
+    implementation project (":clbh")
+
+// BATCH - C0760 API
+    implementation project (":c0760") // API
+// BATCH - C0760 Service
+    implementation project (":c076")
+    implementation project (":c0761")
+    implementation project (":c076a")
+
+// BATCH - ADDF API
+    implementation project (":cladd") // API
+// BATCH - ADDF Service
+    implementation project (":addf")
+
+// BATCH - CLCMP API
+    implementation project (":clcmp") // API
+// BATCH - CLCMP Service
+    implementation project (":convclcmp1")
+    implementation project (":convclcmp2")
+    implementation project (":convclcmp3")
+
+// BATCH - CLD03 API
+    implementation project (":cld03_s01") // API
+    implementation project (":cld03_s02") // API
+    implementation project (":cld03_s03") // API
+// BATCH - CLD03_S01 Service
+    implementation project (":cl003_cre")
+    implementation project (":cl003_sort")
+    implementation project (":c004_rpt")
+
+// BATCH - CLD04 API
+    implementation project (":cld04_s01") // API
+    implementation project (":cld04_s02") // API
+// BATCH - CLD04 Service
+    implementation project (":conv110044")
+    implementation project (":c021_rpt")
+
+// BATCH - CLD11 API
+    implementation project (":cld11_s01") // API
+// BATCH - CLD11 Service
+    implementation project (":outuplrpt")
+
+// BATCH - CLD12 API
+    implementation project (":cld12_s02") // API
+    implementation project (":cld12_s04") // API
+// BATCH - CLD12 Service
+    implementation project (":outrptdtl")
+    implementation project (":outkputf1")
+    implementation project (":outkputf2")
+
+// BATCH - CLD20 API
+    implementation project (":cld20_s00") // API
+// BATCH - CLD20 Service
+    implementation project (":outliqrpt")
+
+// BATCH - CLD22 API
+    implementation project (":cld22_s02") // API
+    implementation project (":cld22_s03") // API
+    implementation project (":cld22_s05") // API
+    implementation project (":cld22_s06") // API
+    implementation project (":cld22_s07") // API
+// BATCH - CLD22 Service
+    implementation project (":outconvbaf")
+    implementation project (":outconvac")
+    implementation project (":outupdbaf")
+    implementation project (":outrptf")
+    implementation project (":outrptpost")
+    implementation project (":outrpttype")
+
+// BATCH - CLD23 API
+    implementation project (":cld23_s00") // API
+// BATCH - CLD23 Service
+    implementation project (":outdelbaf")
+
+// BATCH - CLDTL_DWL API
+    implementation project (":cldtl_dwl") // API
+// BATCH - CLDTL_DWL Service
+    implementation project (":cldtldwl")
+
+// BATCH - CLM01 API
+    implementation project (":clm01_s01") // API
+    implementation project (":clm01_s02") // API
+// BATCH - CLM01 Service
+    implementation project (":chkclmrflg")
+    implementation project (":clm01")
+
+// BATCH - CLU01 API
+    implementation project (":clu01_s01") // API
+    implementation project (":clu01_s02") // API
+    implementation project (":clu01_s03") // API
+// BATCH - CLU01 Service
+    implementation project (":updclmr")
+    implementation project (":clmrdata")
+    implementation project (":e002_rpt")
+
+// BATCH - CONV27 API
+    implementation project (":conv27_s01") // API
+    implementation project (":conv27_s02") // API
+    implementation project (":conv27_s03") // API
+// BATCH - CONV27 Service
+    implementation project (":conv271")
+    implementation project (":conv272")
+    implementation project (":conv273")
+
+// BATCH - PRERU API
+    implementation project (":preru") // API
+// BATCH - PRERU Service
+    implementation project (":xputf")
+
+// BATCH - PRETRUST API
+    implementation project (":pretrust_s01") // API
+    implementation project (":pretrust_s02") // API
+// BATCH - PRETRUST Service
+    implementation project (":pretrust")
+    implementation project (":trustf")
+
+// BATCH - STAT6 API
+    implementation project (":stat6_1b") // API
+    implementation project (":stat6_1c") // API
+    implementation project (":stat6_2a") // API
+    implementation project (":stat6_2b1") // API
+    implementation project (":stat6_2b2") // API
+    implementation project (":stat6_2c") // API
+    implementation project (":stat6_2d") // API
+    implementation project (":stat6_3a") // API
+    implementation project (":stat6_3b") // API
+    implementation project (":stat6_3c") // API
+    implementation project (":stat6_3f") // API
+    implementation project (":stat6_4a") // API
+    implementation project (":stat6_4b") // API
+    implementation project (":stat6_5") // API
+    implementation project (":stat6_5a") // API
+    implementation project (":stat6_5b") // API
+    implementation project (":stat6_5c") // API
+    implementation project (":stat6_5d") // API
+    implementation project (":stat6_5e") // API
+    implementation project (":stat6_6a") // API
+    implementation project (":stat6_6b2") // API
+    implementation project (":stat6_7a1") // API
+    implementation project (":stat6_7a2") // API
+    implementation project (":stat6_7a3") // API
+    implementation project (":stat6_7b1") // API
+    implementation project (":stat6_7b2") // API
+    implementation project (":stat6_7b3") // API
+    implementation project (":stat6_okrtn") // API
+// BATCH - STAT6 Service
+    implementation project (":kputh")
+    implementation project (":analy_mgedtl")
+    implementation project (":stat6")
+    implementation project (":c068")
+    implementation project (":c069")
+    implementation project (":c078")
+    implementation project (":c061")
+    implementation project (":stat7")
+    implementation project (":rpt017")
+    implementation project (":c087")
+    implementation project (":c088")
+    implementation project (":c059")
+    implementation project (":c019")
+    implementation project (":c0153")
+    implementation project (":c009m")
+    implementation project (":c072m")
+    implementation project (":c060m")
+    implementation project (":creclbaf")
+    implementation project (":sort_clbaf")
+    implementation project (":c0891")
+    implementation project (":creclbaf2")
+    implementation project (":c0892")
+    implementation project (":stat6_set_email")
+    implementation project (":remail")
+
+// BATCH - UPDCLCMP API
+    implementation project (":updclcmp_s01") // API
+    implementation project (":updclcmp_s02") // API
+    implementation project (":updclcmp_s03") // API
+    implementation project (":updclcmp_s04") // API
+    implementation project (":updclcmp_s05") // API
+// BATCH - UPDCLCMP Service
+    implementation project (":delclcmp")
+    implementation project (":chkclcmp")
+    implementation project (":sortclcmp")
+    implementation project (":dupclcmp")
+    implementation project (":updateclcmp")
+
+// BATCH - TXTEST
+    implementation project (":txtest") // API
+    implementation project (":txtest_svc")
+
+// BATCH - ANALY
+    implementation project (":analy") // API
+    implementation project (":crehtaxexdtl")
+
+
+
+// BATCH - NCL_PRTMSG
+    implementation project (":ncl_prtmsg") // API
+// BATCH - PRTMSG Service
+    implementation project (":prtmsg") // API
+
+// BATCH - CLRFTP
+    implementation project (":clrftp") // API
+// BATCH - RFTP Service
+    implementation project (":rftp") // API
+
+// BATCH - CLF00 API
+    implementation project (":clf00") // API
+// BATCH - CLF00 Service
+    implementation project (":ftp00") // API
+
+// BATCH - CLF01 API
+    implementation project (":clf01") // API
+// BATCH - CLF01 Service
+    implementation project (":ftp01") // API
+
+// BATCH - CLFM0 API
+    implementation project (":clfm0") // API
+// BATCH - CLFM0 Service
+    implementation project (":ftpmis") // API
+
+// BATCH - CLEM0 API
+    implementation project (":clem0") // API
+// BATCH - CLEM0 Service
+    implementation project (":email") // API
+
+// BATCH - CLEM1 API
+    implementation project (":clem1") // API
+// BATCH - CLEM1 Service
+    implementation project (":remail") // API
+
+
+
+    implementation project (":common_ncl_batch")
+
+    //產對比檔案
+    implementation project (":queryclbaf")
+    implementation project (":queryclbaf_01")
+    implementation project (":queryclcmp")
+    implementation project (":queryclcmp_01")
+    implementation project (":querycldtl")
+    implementation project (":querycldtl_01")
+    implementation project (":querycldmr")
+    implementation project (":querycldmr_01")
+    implementation project (":queryclfee")
+    implementation project (":queryclfee_01")
+    implementation project (":queryclmc")
+    implementation project (":queryclmc_01")
+    implementation project (":queryclmr")
+    implementation project (":queryclmr_01")
+    implementation project (":querycltot")
+    implementation project (":querycltot_01")
+    implementation project (":querycltmr")
+    implementation project (":querycltmr_01")
+    implementation project (":cre_clmr")
+    implementation project (":cre_clmr_01")
+    implementation project (":cre_cldmr")
+    implementation project (":cre_cldmr_01")
+    implementation project (":cre_clcmp")
+    implementation project (":cre_clcmp_01")
+//    implementation project (":cre_clbaf")
+//    implementation project (":cre_clbaf_01")
+
+// BATCH - TF001
+    implementation project (":tf001") // API
+    implementation project (":tf001_svc")
+    implementation project (":tf001_svc_cltmr")
+    implementation project (":tf001_svc_clfee")
+    implementation project (":tf001_svc_cltot")
+    implementation project (":tf001_svc_clmc")
+    implementation project (":tf001_svc_clbaf")
+    implementation project (":tf001_svc_clcmp")
+    implementation project (":tf001_svc_cldmr")
+    implementation project (":tf001_svc_cldtl")
+
+// BATCH - TF004
+    implementation project (":tf004") // API
+    implementation project (":tf004_svc_puth")
+
+// BATCH - CONV511023
+    implementation project (":conv511023_s02") // API
+    implementation project (":conv511023_s06") // API
+// BATCH - CONV511023 Service
+    implementation project (":rptc015pmpz")
+    implementation project (":rptc015")
+
+// BATCH - TF000
+    implementation project (":tf000") // API
+    implementation project (":tf000_svc")
+
+// BATCH - TFDEL
+    implementation project (":tfdel") // API
+    implementation project (":tfdel_svc")
+
+    implementation project (":c077_rpt")
+
+    implementation project (":creauo_s02")
+    implementation project (":conv13559d")
+    // 優利轉碼 - cvrpt
+    implementation project (":cvrpt")
+    implementation project (":cvrpt01")
+}
+
+def sourceFilter = { env ->
+    sourceSets {
+        main {
+            java {
+                srcDir "src/main/java"
+            }
+            resources {
+                if ("local".equals("${env}".trim()))
+                    includes = ["application.yml", "application-${env}.yml", "apiNode_*.yml", "logback.xml", "MgGlobal.yml"]
+                else
+                    includes = ["application.yml", "apiNode_*.yml", "logback.xml", "MgGlobal.yml"]
+//                includes = ["application.yml", "application-*.yml", "apiNode_*.yml", "logback.xml", "MgGlobal.yml"]
+            }
+        }
+    }
+}
+/*
+def copyFile = {
+    env ->
+        copy {
+//            from this.rootProject.rootDir.path + "/src/main/resources/"
+//            into this.rootProject.rootDir.path + "/src/main/resources/"
+//            include("apiNode_*.yml", "logback.xml", "MgGlobal.yml")
+        }
+}
+
+processResources {
+    doFirst {
+        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [activeProfile: System.getProperty("env", "local")]
+    }
+}
+*/
+bootJar {
+    archiveFileName = "bot-ncl-batch-app.jar"
+}
+
+bootWar {
+    sourceFilter("")
+    archiveFileName = "bot-ncl-batch-app.war"
+    webInf { from 'webapp/WEB-INF' }
+    doFirst {
+        delete("${buildDir}/resources/main/application-local.yml")
+        delete("${buildDir}/resources/main/application-dev.yml")
+        delete("${buildDir}/resources/main/application-uat.yml")
+        delete("${buildDir}/resources/main/application-sit.yml")
+        println("${buildDir}")
+    }
+}
+
+tasks.register("bootJar_local") {
+    group("build")
+    description "local env"
+    dependsOn 'clean'
+    sourceFilter("local")
+    finalizedBy("bootJar")
+}
+
+task bootRun_Local {
+    group("build")
+    description "run local."
+    dependsOn "bootJar_local"
+    finalizedBy "bootRun"
+}
+
+assemble.dependsOn bootJar
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'com.diffplug.spotless'
+
+    spotless {
+        java {
+            // Use the default importOrder configuration
+            importOrder()
+            removeUnusedImports()
+
+            googleJavaFormat('1.17.0').aosp().reflowLongStrings().groupArtifact('com.google.googlejavaformat:google-java-format')
+            formatAnnotations()
+
+            licenseHeader '/* (C) $YEAR */' // or licenseHeaderFile
+        }
+    }
+
+    ext {
+        set('snippetsDir', file("build/generated-snippets"))
+        set('springCloudVersion', "2024.0.0")
+    }
+
+    java {
+        sourceCompatibility = '17'
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        maven {
+            url 'http://114.32.31.110:8082/repository/bot_group_maven/'
+            allowInsecureProtocol = true
+        }
+
+        maven {
+            url 'https://btciservices.bluetechnology.com.tw:18083/repository/maven-public/'
+            allowInsecureProtocol = true
+            credentials {
+                username = 'mvnuser'
+                password = '70842954bt'
+            }
+        }
+
+        maven {
+            url 'https://jaspersoft.jfrog.io/jaspersoft/jaspersoft-repo'
+        }
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        implementation 'org.springframework.boot:spring-boot-starter-batch'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-integration'
+        implementation 'org.springframework.integration:spring-integration-sftp'
+        implementation 'org.springframework.boot:spring-boot-starter-mail'
+//        implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+        implementation 'org.springframework.cloud:spring-cloud-starter-config'
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+        implementation 'org.springframework.integration:spring-integration-jpa'
+        implementation 'org.springframework.integration:spring-integration-mail'
+//        implementation 'org.springframework.integration:spring-integration-security'
+//        implementation 'org.springframework.integration:spring-integration-webflux'
+
+        implementation "com.google.code.gson:gson:${gsonVer}"
+
+        implementation "org.mapstruct:mapstruct:${mapStructVer}"
+        implementation "org.apache.commons:commons-lang3:${commonsLang3}"
+
+//        implementation "net.sf.jasperreports:jasperreports:${jasperVer}"
+
+        implementation "com.google.protobuf:protobuf-java-util:${protobufVer}"
+
+        implementation 'javax.annotation:javax.annotation-api:1.3.2'
+
+        implementation "commons-beanutils:commons-beanutils:${beanUtilVer}"
+
+        implementation "joda-time:joda-time:${jodaTime}"
+
+        implementation "io.github.openfeign:feign-okhttp:${openfeign}"
+        implementation "io.swagger.core.v3:swagger-annotations:${swaggerAnnVer}"
+
+        implementation "io.grpc:grpc-stub:${ioGrpcVer}"
+        implementation "io.grpc:grpc-protobuf:${ioGrpcVer}"
+        implementation "io.grpc:grpc-netty-shaded:${ioGrpcVer}"
+        implementation "io.grpc:grpc-api:${ioGrpcVer}"
+        implementation "io.grpc:grpc-netty:${ioGrpcVer}"
+
+
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVer}"
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'io.projectreactor:reactor-test'
+        testImplementation 'org.springframework.batch:spring-batch-test'
+        testImplementation 'org.springframework.integration:spring-integration-test'
+//        testImplementation 'org.springframework.security:spring-security-test'
+    }
+
+    compileJava {
+        dependsOn 'spotlessApply'
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+/*
+    configurations {
+        developmentOnly
+        runtimeClasspath {
+            extendsFrom developmentOnly
+        }
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+*/
+}
+
+tasks.named("bootJar") {
+    archiveClassifier = 'boot'
+}
+
+tasks.named("bootWar") {
+    archiveClassifier = 'boot'
+}

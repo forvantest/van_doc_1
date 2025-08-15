@@ -1,0 +1,509 @@
+pluginManagement {
+    plugins {
+        id 'java'
+        id 'maven-publish'
+
+        id 'org.springframework.boot' version '3.4.2'
+        id 'io.spring.dependency-management' version '1.1.7'
+
+        id 'com.google.protobuf' version '0.9.3'
+        id "com.diffplug.spotless" version "6.20.0"
+    }
+}
+rootProject.name = 'ncl-batch'
+
+// BATCH - C1530 API
+include 'c1530_s01' // API
+include 'c1530_s02' // API
+include 'c1530_s03_01' // API
+include 'c1530_s03_02' // API
+include 'c1530_s04_01' // API
+include 'c1530_s04_02' // API
+include 'c1530_s05' // API
+include 'c1530_s06' // API
+include 'c1530_s07' // API
+include 'c1530_s08' // API
+include 'c1530_s09' // API
+include 'c1530_s10' // API
+include 'c1530_s11' // API
+include 'c1530_s12' // API
+include 'c1530_s13' // API
+include 'c1530_s14' // API
+include 'c1530_s15' // API
+include 'c1530_s16' // API
+include 'c1530_s17' // API
+include 'c1530_s18' // API
+include 'c1530_s19' // API
+include 'c1530_s20' // API
+include 'c1530_s21' // API
+include 'c1530_s22' // API
+include 'c1530_s23' // API
+include 'c1530_s24' // API
+include 'c1530_s25' // API
+include 'c1530_s26' // API
+include 'c1530_s27' // API
+include 'c1530_s28' // API
+include 'c1530_s29' // API
+include 'c1530_s30' // API
+include 'c1530_s31' // API
+include 'c1530_s32' // API
+include 'c1530_s33' // API
+include 'c1530_s34' // API
+include 'c1530_s35' // API
+include 'c1530_s36' // API
+include 'c1530_s36_02' // API
+include 'c1530_s37' // API
+include 'c1530_s38' // API
+include 'c1530_s41' // API
+include 'c1530_s42' // API
+include 'c1530_s43' // API
+include 'c1530_s43_02' // API
+include 'c1530_s44' // API
+include 'c1530_s45_01' // API
+include 'c1530_s45_02' // API
+include 'c1530_s46_01' // API
+include 'c1530_s46_02' // API
+include 'c1530_s46_03' // API
+include 'c1530_s46_04' // API
+include 'c1530_s46_05' // API
+include 'c1530_s46_06' // API
+include 'c1530_s47' // API
+include 'c1530_s48' // API
+include 'c1530_s49' // API
+include 'c1530_s50_01' // API
+include 'c1530_s50_02' // API
+include 'c1530_s50_03' // API
+include 'c1530_s51' // API
+include 'c1530_s52' // API
+include 'c1530_s53_01' // API
+include 'c1530_s53_02' // API
+include 'c1530_s53_03' // API
+include 'c1530_s53_04' // API
+include 'c1530_s54' // API
+include 'c1530_s55' // API
+include 'c1530_s56' // API
+include 'c1530_s57' // API
+include 'c1530_s58' // API
+include 'c1530_s85_01' // API
+include 'c1530_s85_05' // API
+include 'c1530_s85_10' // API
+include 'c1530_s86' // API
+include 'c1530_s87' // API
+include 'c1530_s89' // API
+include 'c1530_s90' // API
+include 'c1530_s91_01' // API
+include 'c1530_s91_02' // API
+include 'c1530_s91_03' // API
+// BATCH - C1530 Service
+include 'puth'
+include 'ex_kputh1'
+include 'ex_sortkputh'
+include 'uputh'
+include 'putf'
+include 'putfn'
+include 'uputf'
+include 'uputfn'
+include 'baf2'
+include 'baf1'
+include 'baf3'
+include 'brdtl'
+include 'totdtl'
+include 'prtf'
+include 'convtax'
+include 'convtputh'
+include 'sortallputf'
+include 'convf'
+include 'conv2'
+include 'conv302007_pbrno'
+include 'conv302007'
+include 'conv5'
+include 'conv7'
+include 'conv9'
+include 'conv11'
+include 'conv12'
+include 'conv13'
+include 'conv15'
+include 'conv16'
+include 'conv19'
+include 'conv20'
+include 'conv21'
+include 'conv23'
+include 'conv25'
+include 'conv28'
+include 'updtax'
+include 'ex_kputh2'
+include 'c060'
+include 'c063'
+include 'c064'
+include 'c065'
+include 'c067'
+include 'c066'
+include 'conv113522'
+include 'conv115463'
+include 'conv115892'
+include 'conv115902'
+include 'conv115988'
+include 'conv121444'
+include 'conv121454'
+include 'conv133288'
+include 'conv145952'
+include 'conv153894'
+include 'conv196929'
+include 'conv361019'
+include 'conv360019'
+include 'conv361689'
+include 'conv366009'
+include 'conv366309'
+include 'conv366ae9'
+include 'conv366za9'
+include 'conv366zb9'
+include 'conv36c179'
+include 'conv36f209'
+include 'conv510040'
+include 'conv530004'
+include 'c073'
+include 'c074'
+include 'c077'
+include 'cretoaims'
+include 'crec012'
+include 'mntclmrstatus'
+include 'c012'
+include 'chgf'
+include 'tapef'
+include 'list1'
+include 'list2'
+include 'deldtl'
+include 'delcmp'
+include 'htaxexdtl'
+include 'c079'
+include 'c080'
+
+
+//BATCH 'ANALY' API
+include 'analy_s00' // API
+include 'analy_s02' // API
+include 'analy_s03' // API
+include 'analy_s04' // API
+include 'analy_s05' // API
+include 'analy_s06' // API
+include 'analy_s07' // API
+include 'analy_s08' // API
+include 'analy_s19' // API
+include 'analy_s21' // API
+include 'analy_s22' // API
+include 'analy_s23' // API
+//BATCH 'ANALY' Service
+include 'analy_mainrtn'
+include 'stat1'
+include 'c016'
+include 'stat2'
+include 'stat3'
+include 'stat4'
+include 'stat5'
+include 'c010'
+include 'crec0121'
+include 'c0121'
+include 'clmrpwtype'
+include 'analy_emailrtn'
+
+// BATCH - BT002 API
+include 'bt002' // API
+// BATCH - BT002 Service
+include 'clbh'
+
+// BATCH - C0760 API
+include 'c0760' // API
+// BATCH - C0760 Service
+include 'c076'
+include 'c0761'
+include 'c076a'
+
+// BATCH - ADDF API
+include 'cladd' // API
+// BATCH - ADDF Service
+include 'addf'
+
+// BATCH - CLCMP API
+include 'clcmp' // API
+// BATCH - CLCMP Service
+include 'convclcmp1'
+include 'convclcmp2'
+include 'convclcmp3'
+
+// BATCH - CLD03 API
+include 'cld03_s01' // API
+include 'cld03_s02' // API
+include 'cld03_s03' // API
+// BATCH - CLD03_S01 Service
+include 'cl003_cre'
+include 'cl003_sort'
+include 'c004_rpt'
+
+// BATCH - CLD04 API
+include 'cld04_s01' // API
+include 'cld04_s02' // API
+// BATCH - CLD04 Service
+include 'conv110044'
+include 'c021_rpt'
+
+// BATCH - CLD11 API
+include 'cld11_s01' // API
+// BATCH - CLD11 Service
+include 'outuplrpt'
+
+// BATCH - CLD12 API
+include 'cld12_s02' // API
+include 'cld12_s04' // API
+// BATCH - CLD12 Service
+include 'outrptdtl'
+include 'outkputf1'
+include 'outkputf2'
+
+// BATCH - CLD20 API
+include 'cld20_s00' // API
+// BATCH - CLD20 Service
+include 'outliqrpt'
+
+// BATCH - CLD22 API
+include 'cld22_s02' // API
+include 'cld22_s03' // API
+include 'cld22_s05' // API
+include 'cld22_s06' // API
+include 'cld22_s07' // API
+// BATCH - CLD22 Service
+include 'outconvbaf'
+include 'outconvac'
+include 'outupdbaf'
+include 'outrptf'
+include 'outrptpost'
+include 'outrpttype'
+
+// BATCH - CLD23 API
+include 'cld23_s00' // API
+// BATCH - CLD23 Service
+include 'outdelbaf'
+
+// BATCH - CLDTL_DWL API
+include 'cldtl_dwl' // API
+// BATCH - CLDTL_DWL Service
+include 'cldtldwl'
+
+// BATCH - CLM01 API
+include 'clm01_s01' // API
+include 'clm01_s02' // API
+// BATCH - CLM01 Service
+include 'chkclmrflg'
+include 'clm01'
+
+// BATCH - CLU01 API
+include 'clu01_s01' // API
+include 'clu01_s02' // API
+include 'clu01_s03' // API
+// BATCH - CLU01 Service
+include 'updclmr'
+include 'clmrdata'
+include 'e002_rpt'
+
+// BATCH - CONV27 API
+include 'conv27_s01' // API
+include 'conv27_s02' // API
+include 'conv27_s03' // API
+// BATCH - CONV27 Service
+include 'conv271'
+include 'conv272'
+include 'conv273'
+
+// BATCH - PRERU API
+include 'preru' // API
+// BATCH - PRERU Service
+include 'xputf'
+
+// BATCH - PRETRUST API
+include 'pretrust_s01' // API
+include 'pretrust_s02' // API
+// BATCH - PRETRUST Service
+include 'pretrust'
+include 'trustf'
+
+// BATCH - STAT6 API
+include 'stat6_1b' // API
+include 'stat6_1c' // API
+include 'stat6_2a' // API
+include 'stat6_2b1' // API
+include 'stat6_2b2' // API
+include 'stat6_2c' // API
+include 'stat6_2d' // API
+include 'stat6_3a' // API
+include 'stat6_3b' // API
+include 'stat6_3c' // API
+include 'stat6_3f' // API
+include 'stat6_4a' // API
+include 'stat6_4b' // API
+include 'stat6_5' // API
+include 'stat6_5a' // API
+include 'stat6_5b' // API
+include 'stat6_5c' // API
+include 'stat6_5d' // API
+include 'stat6_5e' // API
+include 'stat6_6a' // API
+include 'stat6_6b2' // API
+include 'stat6_7a1' // API
+include 'stat6_7a2' // API
+include 'stat6_7a3' // API
+include 'stat6_7b1' // API
+include 'stat6_7b2' // API
+include 'stat6_7b3' // API
+include 'stat6_okrtn' // API
+// BATCH - STAT6 Service
+include 'kputh'
+include 'analy_mgedtl'
+include 'stat6'
+include 'c068'
+include 'c069'
+include 'c078'
+include 'c061'
+include 'stat7'
+include 'rpt017'
+include 'c087'
+include 'c088'
+include 'c059'
+include 'c019'
+include 'c0153'
+include 'c009m'
+include 'c072m'
+include 'c060m'
+include 'creclbaf'
+include 'sort_clbaf'
+include 'c0891'
+include 'creclbaf2'
+include 'c0892'
+include 'stat6_set_email'
+include 'remail'
+
+// BATCH - UPDCLCMP API
+include 'updclcmp_s01' // API
+include 'updclcmp_s02' // API
+include 'updclcmp_s03' // API
+include 'updclcmp_s04' // API
+include 'updclcmp_s05' // API
+// BATCH - UPDCLCMP Service
+include 'delclcmp'
+include 'chkclcmp'
+include 'sortclcmp'
+include 'dupclcmp'
+include 'updateclcmp'
+
+// BATCH - TXTEST
+include 'txtest' // API
+include 'txtest_svc'
+
+
+// BATCH - ANALY
+include 'analy' // API
+include 'crehtaxexdtl'
+
+// BATCH - CONV511023
+include 'conv511023_s02' // API
+include 'conv511023_s06' // API
+// BATCH - CONV511023 Service
+include 'rptc015pmpz'
+include 'rptc015'
+
+// BATCH - NCL_PRTMSG
+include 'ncl_prtmsg' // API
+// BATCH - RFTP Service
+include 'prtmsg'
+
+// BATCH - CLRFTP
+include 'clrftp' // API
+// BATCH - RFTP Service
+include 'rftp'
+
+// BATCH - CLF00
+include 'clf00' // API
+// BATCH - CLF00 Service
+include 'ftp00'
+
+// BATCH - CLF01
+include 'clf01' // API
+// BATCH - CLF01 Service
+include 'ftp01'
+
+// BATCH - CLFM0
+include 'clfm0' // API
+// BATCH - CLFM0 Service
+include 'ftpmis'
+
+// BATCH - CLEM0
+include 'clem0' // API
+// BATCH - CLEM0 Service
+include 'email'
+
+// BATCH - CLEM1
+include 'clem1' // API
+// BATCH - CLEM1 Service
+//include 'remail'
+
+
+include 'common_ncl_batch'
+
+//產對比檔案
+include 'queryclmr'
+include 'queryclmc'
+include 'queryclfee'
+include 'querycltmr'
+include 'querycltot'
+include 'querycldtl'
+include 'queryclcmp'
+include 'querycldmr'
+include 'queryclbaf'
+include 'queryclmr_01'
+include 'queryclmc_01'
+include 'queryclfee_01'
+include 'querycltmr_01'
+include 'querycltot_01'
+include 'querycldtl_01'
+include 'queryclcmp_01'
+include 'querycldmr_01'
+include 'queryclbaf_01'
+include 'cre_clmr'
+include 'cre_clmr_01'
+include 'cre_cldmr'
+include 'cre_cldmr_01'
+include 'cre_clcmp'
+include 'cre_clcmp_01'
+//include 'cre_clbaf'
+//include 'cre_clbaf_01'
+
+// BATCH - TF001
+include 'tf001' // API
+include 'tf001_svc'
+include 'tf001_svc_cltmr'
+include 'tf001_svc_clfee'
+include 'tf001_svc_cltot'
+include 'tf001_svc_clmc'
+include 'tf001_svc_clbaf'
+include 'tf001_svc_clcmp'
+include 'tf001_svc_cldmr'
+include 'tf001_svc_cldtl'
+
+// BATCH - TF004
+include 'tf004' // API
+include 'tf004_svc_puth'
+
+// BATCH - TF000
+include 'tf000' // API
+include 'tf000_svc'
+
+// BATCH - TFDEL
+include 'tfdel' // API
+include 'tfdel_svc'
+
+
+include 'c077_rpt'
+
+include 'creauo_s02'
+include 'conv13559d'
+// 優利轉碼 - cvrpt
+include 'cvrpt'
+include 'cvrpt01'

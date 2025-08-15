@@ -1,0 +1,6 @@
+apili:
+  - name: CLD12_S02 # WFL/GN/DWL/CL012
+    fmtId: CL_BATCH_I
+    txType: U # I:查詢類,U:更新類
+    service:
+      - name : OUTRPTDTL # OBJ/CL/BH/OUTING/RPTDTL(DATE)[T]

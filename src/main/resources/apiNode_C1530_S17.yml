@@ -1,0 +1,7 @@
+apili:
+  - name: C1530_S17
+    fmtId: CL_BATCH_I
+    txType: U # I:查詢類,U:更新類
+    service:
+      # STEP17
+      - name: CONV360019 #OBJ/CL/BH/CONV360019[T]

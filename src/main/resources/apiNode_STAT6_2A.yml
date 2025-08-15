@@ -1,0 +1,6 @@
+apili:
+  - name: STAT6_2A
+    fmtId: CL_BATCH_I
+    txType: U # I:查詢類,U:更新類
+    service:
+      - name: STAT6

@@ -1,0 +1,9 @@
+apili:
+  - name: C0760 # WFL/CL/BH/C076
+    fmtId: CL_BATCH_I
+    txType: U # I:查詢類,U:更新類
+    service:
+      - name: C076
+      # 新寫完加在這後面
+      - name: C0761
+      - name: C076A

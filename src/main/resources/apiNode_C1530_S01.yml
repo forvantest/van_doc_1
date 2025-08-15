@@ -1,0 +1,9 @@
+apili:
+  - name: C1530_S01
+    fmtId: CL_BATCH_I
+    txType: U # I:查詢類,U:更新類
+    service:
+      # STEP01
+      - name: PUTH
+      - name: EX_KPUTH1
+      - name: EX_SORTKPUTH
