@@ -1,7 +1,0 @@
-apili:
-  - name: C1530_S52
-    fmtId: CL_BATCH_I
-    txType: U # I:查詢類,U:更新類
-    service:
-      # STEP55
-      - name: CONV530004

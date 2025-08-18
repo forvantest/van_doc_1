@@ -1,6 +1,0 @@
-apili:
-  - name: CLD22_S06 # WFL/GN/DWL/CL022
-    fmtId: CL_BATCH_I
-    txType: U # I:查詢類,U:更新類
-    service:
-      - name : OUTRPTPOST

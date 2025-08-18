@@ -1,7 +1,0 @@
-apili:
-  - name: C1530_S45_02
-    fmtId: CL_BATCH_I
-    txType: U # I:查詢類,U:更新類
-    service:
-      # STEP45
-      - name: CONV366AE9

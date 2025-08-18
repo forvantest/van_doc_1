@@ -1,6 +1,0 @@
-apili:
-  - name: CONV27_S01
-    fmtId: CL_BATCH_I
-    txType: U # I:查詢類,U:更新類
-    service:
-      - name: CONV271

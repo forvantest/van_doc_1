@@ -1,8 +1,0 @@
-spring:
-  config:
-    import:
-      - optional:classpath:application-local.yml
-      - optional:/app/fsap/fsap-ncl-batch/application-config.yml
-      - optional:/app/config/application-config.yml
-      - optional:/log/ncl-batch/config/application-config.yml
-  doubleLine: 0

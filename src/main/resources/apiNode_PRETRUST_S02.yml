@@ -1,6 +1,0 @@
-apili:
-  - name: PRETRUST_S02
-    fmtId: CL_BATCH_I
-    txType: U # I:查詢類,U:更新類
-    service:
-      - name : TRUSTF

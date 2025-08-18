@@ -1,6 +1,0 @@
-apili:
-  - name: CLD04_S02 # WFL/GN/DWL/CL004
-    fmtId: CL_BATCH_I
-    txType: U # I:查詢類,U:更新類
-    service:
-      - name : C021_RPT # RUN OBJ/CL/BH/RPT/C021[T];

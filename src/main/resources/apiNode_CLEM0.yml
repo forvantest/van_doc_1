@@ -1,7 +1,0 @@
-apili:
-  - name: CLEM0 # WFL/CL/BH/EMAIL
-    fmtId: CL_BATCH_I
-    txType: U # I:查詢類,U:更新類
-    service:
-      # 新寫完加在這後面
-      - name : EMAIL # OBJ/CL/BH/EMAIL(DATE REFERENCE,PUTFILE REFERENCE)[T]

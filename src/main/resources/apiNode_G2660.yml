@@ -1,5 +1,0 @@
-apili:
-  - name: G2660
-    fmtId: REQUEST.NONDATA.I
-    service:
-      - name: G2660S

@@ -1,6 +1,0 @@
-apili:
-  - name: CRE_CLCMP_01
-    fmtId: CL_BATCH_I
-    txType: U # I:查詢類,U:更新類
-    service:
-      - name: CRE_CLCMP
